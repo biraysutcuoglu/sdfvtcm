@@ -1,0 +1,67 @@
+# Python-specific ignores
+__pycache__/               
+*.pyc                      # Ignore compiled Python files
+*.pyo                      # Ignore optimized Python files
+*.pyd                      # Ignore Python DLL files
+*.pth                      # Ignore PyTorch model files 
+
+# Environment and dependency files
+env/                       # Virtual environment
+venv/                      # Virtual environment
+*.env                      # Environment variable files
+*.venv                     # Virtual environment settings
+
+# Notebook-related ignores
+.ipynb_checkpoints/        # Jupyter Notebook checkpoints
+
+# Log files
+*.log                      # Log files
+logs/                      # Log directory
+
+# Dataset files
+data/                      # Ignore all datasets (project-wide)
+*.csv                      # CSV files
+*.h5                       # HDF5 files
+*.tfrecord                 # TensorFlow records
+
+# Model files and checkpoints
+*.pth                      # PyTorch model files
+*.pt                       # PyTorch saved tensors
+*.ckpt                     # Checkpoint files
+models/                    # Models directory (project-wide)
+
+# Output files
+outputs/                   # Ignore general output directories
+*.out                      # Output files
+*.bak                      # Backup files
+
+# OS-specific ignores
+.DS_Store                  # macOS
+Thumbs.db                  # Windows
+
+# Dataset preprocessor module-specific ignores
+Data/
+
+# Semantic Segmentation module-specific ignores
+MaskRCNN/detectron_models/ # Model checkpoints for semantic segmentation
+MaskRCNN/fba_models/    # Model checkpoints 
+MaskRCNN/prediction_visualizations/ # Output files for visualizations
+MaskRCNN/wandb/ # Wandb logs
+
+TransferLearningUnet/V_Unet/
+
+# Image generation module-specific ignores
+ImageGenerationwithStableDiff/diffusers
+ImageGenerationwithStableDiff/generated_images
+
+
+# IDE and editor-specific ignores
+.vscode/                   # Visual Studio Code settings
+*.sublime-workspace        # Sublime Text workspace files
+*.sublime-project          # Sublime Text project files
+*.swp                      # Swap files (e.g., vim)
+
+# Temporary files and folders
+*.tmp                      # Temporary files
+temp/                      # Temporary directories
+tmp/                       # Temporary directories
