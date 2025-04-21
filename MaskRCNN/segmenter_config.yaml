@@ -1,0 +1,29 @@
+train_dataset:
+  path: "../Data/FBA_dataset/train/images"
+  labels_path: "../Data/FBA_dataset/train/images/train_labels.json"
+
+val_dataset:
+  path: "../Data/FBA_dataset/val/images/"
+  labels_path:  "../Data/FBA_dataset/val/images/val_labels.json"
+
+test_dataset:
+  path: "../Data/FBA_dataset/test/images/"
+  labels_path: "../Data/FBA_dataset/test/images/test_labels.json"
+
+model:
+  output_dir: "./fba_models/real/" # the trained model will be saved here
+  num_classes: 4 # for fba dataset change this to 4, for tool dataset change this to 2
+  num_workers: 2
+  batch_size: 2
+  lr: 0.0001 
+  max_iter: 8000
+  batch_size_per_image: 1024 
+
+predictor:
+  threshold: 0.5
+
+wandb:
+  project_name: "fba"
+  experiment_name: "real only"  
+
+  

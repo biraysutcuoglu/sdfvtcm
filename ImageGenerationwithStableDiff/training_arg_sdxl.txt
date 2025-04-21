@@ -1,0 +1,53 @@
+# Tool dataset parameters ----------------------------------
+
+accelerate launch train_text_to_image_lora_sdxl.py \
+  --pretrained_model_name_or_path="stabilityai/stable-diffusion-xl-base-1.0" \
+  --pretrained_vae_model_name_or_path="madebyollin/sdxl-vae-fp16-fix" \
+  --dataset_name="artisanalwasp/resized_tool_dataset" \
+  --validation_prompt="Insert with High Wear" \
+  --num_validation_images=3 \
+  --validation_epochs=1 \
+  --output_dir="output/resized_tool_dataset_model_batchsize2_outputs" \
+  --resolution=1024 \
+  --center_crop \
+  --train_text_encoder \
+  --train_batch_size=2 \
+  --num_train_epochs=20 \
+  --checkpointing_steps=500 \
+  --gradient_accumulation_steps=4 \
+  --learning_rate=5e-04 \
+  --lr_warmup_steps=0 \
+  --report_to="wandb" \
+  --dataloader_num_workers=8 \
+  --rank=4 \
+  --allow_tf32 \
+  --mixed_precision="fp16" \
+  --push_to_hub \
+  --hub_model_id="resized_tool_dataset_model_batchsize2"
+
+# FBA dataset parameters ----------------------------------
+
+accelerate launch train_text_to_image_lora_sdxl.py \
+  --pretrained_model_name_or_path="stabilityai/stable-diffusion-xl-base-1.0" \
+  --pretrained_vae_model_name_or_path="madebyollin/sdxl-vae-fp16-fix" \
+  --dataset_name="artisanalwasp/resized_fba_with_lanczos_wo_wearscores_refactoredlabels" \
+  --validation_prompt="insert with bue wear" \
+  --num_validation_images=3 \
+  --validation_epochs=1 \
+  --output_dir="output/sdxl-base-1.0-fbadataset5e-4-lrwrmp0-ep20-withoutpadding-noflip-lora-newlabels" \
+  --resolution=1024 \
+  --center_crop \
+  --train_text_encoder \
+  --train_batch_size=1 \
+  --num_train_epochs=20 \
+  --checkpointing_steps=500 \
+  --gradient_accumulation_steps=4 \
+  --learning_rate=5e-04 \
+  --lr_warmup_steps=0 \
+  --report_to="wandb" \
+  --dataloader_num_workers=8 \
+  --rank=4 \
+  --allow_tf32 \
+  --mixed_precision="fp16" \
+  --push_to_hub \
+  --hub_model_id="sdxl-base-1.0-fbadataset5e-4-lrwrmp0-ep20-withoutpadding-noflip-lora-newlabels"
