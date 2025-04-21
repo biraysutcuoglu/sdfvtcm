@@ -45,9 +45,9 @@ Data/
 
 # Semantic Segmentation module-specific ignores
 MaskRCNN/detectron_models/ # Model checkpoints for semantic segmentation
-MaskRCNN/fba_models/    # Model checkpoints 
-MaskRCNN/prediction_visualizations/ # Output files for visualizations
-MaskRCNN/wandb/ # Wandb logs
+MaskRCNN/fba_models 
+MaskRCNN/prediction_visualizations
+MaskRCNN/wandb
 
 TransferLearningUnet/V_Unet/
 
