@@ -8,6 +8,7 @@ __pycache__/
 # Environment and dependency files
 env/                       # Virtual environment
 venv/                      # Virtual environment
+thesisProjectTestEnv/
 *.env                      # Environment variable files
 *.venv                     # Virtual environment settings
 
