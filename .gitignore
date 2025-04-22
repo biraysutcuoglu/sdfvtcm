@@ -44,7 +44,6 @@ Thumbs.db                  # Windows
 Data/
 
 # Semantic Segmentation module-specific ignores
-MaskRCNN/detectron_models/ # Model checkpoints for semantic segmentation
 MaskRCNN/fba_models 
 MaskRCNN/prediction_visualizations
 MaskRCNN/wandb
