@@ -91,10 +91,15 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 12. Paste the training arguments then press Enter.
     - The training will start. (According to the provided hyperparameters, training may take long time.)
     - In the beginning of the training if wandb is configured, terminal will display a link for monitoring through WandB. 
+
 --------------
 ### Generating Images with Finetuned Stable Diffusion Models
 > Note: This step requires a GPU.
-To generate images for the Tool dataset run **inference_Tool_images.ipynb**, to generate images for the FBA dataset run **inference_FBA_images.ipynb**
+- To generate images for the Tool dataset run **inference_Tool_images.ipynb**, to generate images for the FBA dataset run **inference_FBA_images.ipynb**
+
+--------------
+### Dataset Augmentation with Synthetic Images
+
 
 
 
