@@ -1,19 +1,18 @@
 # Stable Diffusion Data Augmentation for Visual Tool Condition Monitoring
 
 1. Create a virtual env. (python>=3.9,<3.12  # TensorFlow 2.16.1 supports Python 3.8–3.11)
-- python3.10 -m venv venv
+- python3.10 -m venv {name of the venv}
 
 2. activate venv
-- source venv/bin/activate
+- source {name of the venv}/bin/activate
 
 3. upgrade pip and install requirements
 - pip install --upgrade pip
 - pip install -r requirements.txt
-- python -m ipykernel install --user --name=venv --display-name "Python venv"
+- python -m ipykernel install --user --name={name of the venv} --display-name "Python venv"
 
 4. install detectron2 (this may take a while)
-- python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
-
+- ``python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' ``
 5. move Data folder to root
 
 ----------------------
@@ -35,6 +34,7 @@
 
 # If you want to do inference with an already trained model
 - copy fba_models folder into MaskRCNN (in this folder the models mentioned in thesis can be found)
+- add fba_model to .gitignore
 - pick a model and adjust the segmenter_config.yaml 
     - lets say that the picked model is fba_models/real/real_only_{experimentdetails}. The experiment_details part is automatically created based on the hyperparameters in the config. 
     - model/output_dir should be adjusted to "./fba_models/real/"
