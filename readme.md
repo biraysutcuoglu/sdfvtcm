@@ -94,6 +94,7 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 --------------
 ### Generating Images with Finetuned Stable Diffusion Models
 > Note: This step requires a GPU.
+To generate images for the Tool dataset run **inference_Tool_images.ipynb**, to generate images for the FBA dataset run **inference_FBA_images.ipynb**
 
 
 
