@@ -112,6 +112,7 @@ Otherwise **if you'd like to use already prepared datasets follow these steps**:
 - MaskRCNN model can be trained on the prepared dataset by adjusting the training dataset path field of the MaskRCNN/segmenter_config.yaml. 
 - UNet model can be trained on the prepared dataset by changing the training dataset path in the **model_training.ipynb**.
 
+--------------
 Extra Notes: 
 - To prepare a dataset for Mask R-CNN model from scratch, you can follow the notebook **DatasetPreprocessor/prepare_FBA_dataset_for_segmentation_model_notebook.ipynb**
     - This notebook takes a dataset containing images and colormasks and splits it into train, validation and test sets.
