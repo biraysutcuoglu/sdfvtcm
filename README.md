@@ -65,7 +65,7 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 
 -----------------------
 ### Stable Diffusion Model Finetuning
-> Note: You can skip this step to use already trained models to generate images. \
+> Note: If you prefer to use already trained models to generate images, you can skip ahead to [Generating Images with Finetuned Stable Diffusion Models](#generating-images-with-finetuned-stable-diffusion-models). \
 > Note: This step requires a GPU.
 8. Clone diffusers library from github and install required packages \
     `` cd ImageGenerationwithStableDiff `` \
@@ -99,6 +99,16 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 
 --------------
 ### Dataset Augmentation with Synthetic Images
+After generating images **if you'd like to create augmented datasets from scratch follow these steps**:
+- Open Experiments folder (in the root directory of the project)
+    - Real datasets can be combined with synthetic images as described in **adding_generated_bue_images.ipynb*. This notebook describes how to create a combined dataset. 
+    - After combining the real and the synthetic images, new augmented training dataset can be created. 
+    - MaskRCNN model can be trained on the combined dataset by adjusting the training dataset path field of the MaskRCNN/segmenter_config.yaml. 
+    - UNet model can be trained on the combined dataset by changing the training dataset path in the **model_training.ipynb**.
+
+Otherwise **if you'd like to use already prepared datasets follow these steps**:
+- MaskRCNN model can be trained on the prepared dataset by adjusting the training dataset path field of the MaskRCNN/segmenter_config.yaml. 
+- UNet model can be trained on the prepared dataset by changing the training dataset path in the **model_training.ipynb**.
 
 
 
