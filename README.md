@@ -1,5 +1,5 @@
 # Stable Diffusion Data Augmentation for Visual Tool Condition Monitoring
-
+![alt text](system_arch.png)
 ## Steps for Running the Detection and Segmentation Pipeline
 1. Create a virtual environment (venv) with python>=3.9,<3.12  (TensorFlow 2.16.1 supports Python 3.8–3.11) \
 `` python3.10 -m venv {name_of_the_venv} ``
@@ -38,7 +38,7 @@
     - Prediction visualization will be placed under MaskRCNN/prediction_visualizations/{experiment_name}
     - Inside of the prediction_visualizations folder, comparisons folder will show the ground truth on the left and the prediction result on the right. Predictions folder will only show the model predictions.
 
-7.2. **If you want to do inference with an already trained model**
+7.2. **If you'd like to do inference with an already trained model**
 - Copy fba_models folder into MaskRCNN (In this folder, the models mentioned in the experiments section of the thesis can be found.)
     .  
     ├── MaskRCNN  
@@ -101,7 +101,7 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 ### Dataset Augmentation with Synthetic Images
 After generating images **if you'd like to create augmented datasets from scratch follow these steps**:
 - Open Experiments folder (in the root directory of the project)
-    - Real datasets can be combined with synthetic images as described in **adding_generated_bue_images.ipynb*. This notebook describes how to create a combined dataset. 
+    - Real datasets can be combined with synthetic images as described in **adding_generated_bue_images.ipynb**. This notebook describes how to create a combined dataset. 
     - After combining the real and the synthetic images, new augmented training dataset can be created. 
     - MaskRCNN model can be trained on the combined dataset by adjusting the training dataset path field of the MaskRCNN/segmenter_config.yaml. 
     - UNet model can be trained on the combined dataset by changing the training dataset path in the **model_training.ipynb**.
