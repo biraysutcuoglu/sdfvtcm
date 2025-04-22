@@ -95,7 +95,8 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 --------------
 ### Generating Images with Finetuned Stable Diffusion Models
 > Note: This step requires a GPU.
-- To generate images for the Tool dataset run **inference_Tool_images.ipynb**, to generate images for the FBA dataset run **inference_FBA_images.ipynb**
+- To generate images for the Tool dataset, run **inference_Tool_images.ipynb**. To generate images for the FBA dataset, run **inference_FBA_images.ipynb**
+- After this step, for using generated images in training of the segmentation models, manual annotation is required. For manual annotation, we used online annotation tool https://www.makesense.ai/. The annotations of the generated images can be found inside of the Data/{Tool or FBA dataset}/generated/.
 
 --------------
 ### Dataset Augmentation with Synthetic Images
@@ -107,6 +108,7 @@ After generating images **if you'd like to create augmented datasets from scratc
     - UNet model can be trained on the combined dataset by changing the training dataset path in the **model_training.ipynb**.
 
 Otherwise **if you'd like to use already prepared datasets follow these steps**:
+- Prepared datasets can be found in Data/{Tool or FBA dataset}/experiments/. 
 - MaskRCNN model can be trained on the prepared dataset by adjusting the training dataset path field of the MaskRCNN/segmenter_config.yaml. 
 - UNet model can be trained on the prepared dataset by changing the training dataset path in the **model_training.ipynb**.
 
