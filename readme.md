@@ -24,13 +24,13 @@
 ### Segmentation with Mask R-CNN
 6. For training Mask R-CNN on FBA dataset:
 - Open MaskRCNN/segmenter_config.yaml
-    - Check configurations (configure location of train, validation and test sets, hyperparameters for training MaskRCNN and Wandb project and experiment name)
+    - Check configurations (configure location of train, validation and test sets, hyperparameters for training MaskRCNN and WandB project and experiment name)
 - If everything looks fine, for training:
     - ``cd MaskRCNN/`` and run ``python tool_segmentation.py --mode train``
         - The model will be saved in MaskRCNN/{model_output_dir} directory.
 
         - During training terminal will show MaskRCNN model architecture, expected training time, evaluation results for BBox and Segm. 
-        - If you'd like to see the WandB monitoring, just after running the train command, it will display a Wandb link. Through this link, training plots can be monitored (this step requires having a wandb account).
+        - If you'd like to see the WandB monitoring, just after running the train command, it will display a WandB link. Through this link, training plots can be monitored (this step requires having a WandB account).
 
 7.1. After training finishes, inference on validation and test images can be done via:
 - ``python tool_segmentation.py --mode infer-on-val`` or `` python tool_segmentation.py --mode infer-on-test``
@@ -48,7 +48,7 @@
 
 - Add fba_models to .gitignore
 - Pick a model and adjust the segmenter_config.yaml:
-    - Let's say that you selected fba_models/real/real only_{experiment_details} model. According to this selection :
+    - Let's say that you selected fba_models/real/real only_{experiment_details} model. According to this selection:
         - The experiment_details part is automatically created based on the hyperparameters in the config. 
         - model/output_dir should be adjusted to "./fba_models/real/"
         - wandb/experiment_name should be adjusted to "real only" 
@@ -57,11 +57,44 @@
 
 ----------------------
 ### Segmentation with UNet
-For training the UNet, Jupyter Notebook **model_training.ipynb** and for model evaluation model_evaluation.ipynb is implemented.
+For training the UNet, Jupyter Notebook **model_training.ipynb** and for model evaluation **model_evaluation.ipynb** is implemented.
 - By running these notebooks, training or inference can be done on the Tool Dataset.
 - If you'd like to use already trained models for inference:
     - Copy the V_Unet folder inside of TransferLearningUnet. (if you change the name of the folder, please add it to the .gitignore file)
     - Run model_evaluation.ipynb notebook.
 
 -----------------------
+### Stable Diffusion Model Finetuning
+> Note: You can skip this step to use already trained models to generate images. \
+> Note: This step requires a GPU.
+8. Clone diffusers library from github and install required packages \
+    `` cd ImageGenerationwithStableDiff `` \
+    `` git clone https://github.com/huggingface/diffusers `` \
+    `` cd diffusers `` \
+    `` pip install -e. `` \
+    `` cd examples/text_to_image `` \
+    `` pip install -r requirements_sdxl.txt `` 
+
+9. Monitoring model training and preparing model output directory: 
+- If you'd like to save the model to HuggingFace log in via: \
+    `` huggingface-cli login ``
+- If you'd like to monitor training process and see the evaluation of generated images: \
+    `` pip install wandb ``\
+    `` wandb login ``
+
+10. Setup accelerate configuration (enables distributed training)\
+    `` accelerate config default ``
+
+11. Configure and copy the training arguments from ImageGenerationwithStableDiff/training_arg_sdxl.txt file (either for Tool or FBA dataset)
+    - If report_to="wandb" is used, the training process can be monitored. 
+
+12. Paste the training arguments then press Enter.
+    - The training will start. (According to the provided hyperparameters, training may take long time.)
+    - In the beginning of the training if wandb is configured, terminal will display a link for monitoring through WandB. 
+--------------
+### Generating Images with Finetuned Stable Diffusion Models
+> Note: This step requires a GPU.
+
+
+
 

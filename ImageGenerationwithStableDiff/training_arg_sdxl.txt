@@ -7,7 +7,7 @@ accelerate launch train_text_to_image_lora_sdxl.py \
   --validation_prompt="Insert with High Wear" \
   --num_validation_images=3 \
   --validation_epochs=1 \
-  --output_dir="output/resized_tool_dataset_model_batchsize2_outputs" \
+  --output_dir="output/INSERT YOUR MODEL OUTPUT DIR" \
   --resolution=1024 \
   --center_crop \
   --train_text_encoder \
@@ -23,7 +23,7 @@ accelerate launch train_text_to_image_lora_sdxl.py \
   --allow_tf32 \
   --mixed_precision="fp16" \
   --push_to_hub \
-  --hub_model_id="resized_tool_dataset_model_batchsize2"
+  --hub_model_id="INSERT YOUR MODEL ID"
 
 # FBA dataset parameters ----------------------------------
 
@@ -34,7 +34,7 @@ accelerate launch train_text_to_image_lora_sdxl.py \
   --validation_prompt="insert with bue wear" \
   --num_validation_images=3 \
   --validation_epochs=1 \
-  --output_dir="output/sdxl-base-1.0-fbadataset5e-4-lrwrmp0-ep20-withoutpadding-noflip-lora-newlabels" \
+  --output_dir="output/INSERT YOUR MODEL OUTPUT DIR" \
   --resolution=1024 \
   --center_crop \
   --train_text_encoder \
@@ -50,4 +50,4 @@ accelerate launch train_text_to_image_lora_sdxl.py \
   --allow_tf32 \
   --mixed_precision="fp16" \
   --push_to_hub \
-  --hub_model_id="sdxl-base-1.0-fbadataset5e-4-lrwrmp0-ep20-withoutpadding-noflip-lora-newlabels"
+  --hub_model_id="INSERT MODEL ID"
