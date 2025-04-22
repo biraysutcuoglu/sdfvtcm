@@ -1,6 +1,6 @@
-annotation_converter:
-  images_dir: "../Detectron_SSegmentation/data/train_10/"
-  ann_file_path: "../Detectron_SSegmentation/data/train_10/labels_train_10.json"
+# annotation_converter:
+#   images_dir: "../Data/train_10/"
+#   ann_file_path: "../Detectron_SSegmentation/data/train_10/labels_train_10.json"
 
 dataset_with_color_maps:
   images_dir: "../Data/FBA_dataset/train/images"
@@ -9,7 +9,7 @@ dataset_with_color_maps:
 
 image_labeler:
   tool_class: "insert"
-  coco_annotations_path: "../Data/FBA_dataset/test/images/test_labels.json"
+  coco_annotations_path: "../Data/FBA_dataset/train/images/train_labels.json"
   
 dataloader:
   images_to_be_resized_path: "../Data/FBA_dataset/train/images"

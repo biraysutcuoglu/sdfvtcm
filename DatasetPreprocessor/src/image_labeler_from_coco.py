@@ -32,7 +32,7 @@ class ImageLabeler:
         # generate image dict and assign required values
         self.image_dict = self.generate_image_dict(coco_images_field)
         # below methods will update the image_dict
-        self.get_wear_type(coco_annotations_field, coco_categories_field)
+        self.get_wear_type(coco_annotations_field)
         self.get_tool_size(coco_annotations_field)
         self.get_wear_state(coco_annotations_field)
         self.calculate_wear_score()
