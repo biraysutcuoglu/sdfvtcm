@@ -60,7 +60,7 @@ class ModelTrainer:
                                             verbose=1)
         return history, checkpoint_path
     
-    def evaluate_model_on_val(checkpoint_path, test_df, batch_size, height, width, history):
+    def evaluate_model(checkpoint_path, test_df, batch_size, height, width, history=None):
         # Evaluate the generator 
         histories = []
         losses = []
@@ -92,14 +92,16 @@ class ModelTrainer:
             "iou": results['iou']
         }
 
-        histories.append(history)
+        if history is not None:
+            histories.append(history)
+
         accuracies.append(("binary_accuracy", results['binary_accuracy']))
         losses.append(("loss", results['loss']))
         dicecoefs.append(("dice_coef", results['dice_coef']))
         ious.append(("iou", results['iou']))
         ModelTrainer.print_evaluation_results(histories, accuracies, losses, dicecoefs, ious)
 
-        return metrics, histories
+        return TLmodel, metrics, histories
 
     def print_evaluation_results(histories, accuracies, losses, dicecoefs, ious):
         print('Evaluation scores from pretrained model:')
