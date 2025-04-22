@@ -113,10 +113,10 @@ Otherwise **if you'd like to use already prepared datasets follow these steps**:
 - UNet model can be trained on the prepared dataset by changing the training dataset path in the **model_training.ipynb**.
 
 --------------
-Extra Notes: 
+### Extra Notes: 
 - To prepare a dataset for Mask R-CNN model from scratch, you can follow the notebook **DatasetPreprocessor/prepare_FBA_dataset_for_segmentation_model_notebook.ipynb**
-    - This notebook takes a dataset containing images and colormasks and splits it into train, validation and test sets.
-    - Generates COCO annotations from color masks
+    - This notebook takes a dataset containing images and color masks and splits it into train, validation and test sets.
+    - Generates COCO annotations from color masks.
     - Labels images for the Stable Diffusion Model.
 
 - To prepare data for finetuning Stable Diffusion Model, first images needs to resized. Then, a HuggingFace dataset can be created for finetuning the Stable Diffusion Model:
