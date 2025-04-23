@@ -15,7 +15,18 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 
 class ModelUnet:
+    """
+    Class for building and training a UNet model for image segmentation.
+    """
     def TL_unet_model(input_shape):
+        """
+        Build a UNet model using transfer learning with VGG16 as the base model.
+        Retrieved from: https://github.com/dorltcheng/Transfer-Learning-U-Net-Deep-Learning-for-Lung-Ultrasound-Segmentation/blob/main/Model.py 
+        Args:
+            input_shape (tuple): Shape of the input images (height, width, channels).
+            Returns:
+                model (tf.keras.Model): UNet model.
+        """
         # input: input_shape (height, width, channels) 
         # return model
         input_shape = input_shape

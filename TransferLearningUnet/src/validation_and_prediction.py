@@ -11,7 +11,12 @@ from tensorflow.keras.models import Model,load_model
 class ValidationAndPrediction:
 
     def plot_histories(histories, save_dir):
-        # Plots histories obtained from training using fit_generator
+        """
+        Plot training and validation loss and accuracy for each fold in cross-validation.
+        Args:
+            histories (list): List of training histories for each fold.
+            save_dir (str): Directory to save the plots.
+        """
         for h, history in enumerate(histories):
             keys = history.history.keys()
             fig, axs = plt.subplots(1, len(keys)//2, figsize = (25, 5))
@@ -31,8 +36,18 @@ class ValidationAndPrediction:
         with open(hist_filename, 'wb') as file_pi:
             pickle.dump(history.history, file_pi)
 
-    # Visualize prediction results of the model on test images
     def pred_results_tl(TLmodel, test_df, number_of_img, height, width, save_dir, model_name):
+        """
+        Predict and visualize results using the trained model.
+        Args:
+            TLmodel (tf.keras.Model): Trained UNet model.
+            test_df (pd.DataFrame): DataFrame containing the testing data.
+            number_of_img (int): Number of images to predict.
+            height (int): Height of input images.
+            width (int): Width of input images.
+            save_dir (str): Directory to save the predicted images.
+            model_name (str): Name of the model.
+        """
         os.makedirs(save_dir, exist_ok=True)
         for i in range(number_of_img):
             index = np.random.randint(0,len(test_df.index))

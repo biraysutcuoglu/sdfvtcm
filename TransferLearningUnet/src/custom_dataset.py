@@ -6,6 +6,9 @@ from matplotlib import pyplot as plt
 import pandas as pd
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+"""
+Custom Dataset Class for Image Segmentation with UNet
+"""
 
 class CustomDataset(Dataset):
 
@@ -27,8 +30,13 @@ class CustomDataset(Dataset):
         return sorted([os.path.join(img_dir, img) for img in os.listdir(img_dir) if img.endswith(".png")])
 
     def image_display(image_pathlist, mask_pathlist, index):
-        # input: image and mask filepath and the index 
-        # output matplotlib images 
+        """
+        Display the image and its corresponding mask in the given index
+        Args:
+            image_pathlist (list): list of image file paths
+            mask_pathlist (list): list of mask file paths
+            index (int): index of the image and mask to display
+        """
         image = Image.open(image_pathlist[index])
         imagearray = np.array(image)
         print('Image shape: ', imagearray.shape)
@@ -59,6 +67,13 @@ class CustomDataset(Dataset):
         return np.array(images_array)
 
     def convert_to_binary_masks(mask_paths):
+        """
+        Convert masks to binary format
+        Args:
+            mask_paths (list): list of mask file paths   
+        Returns: 
+            binary_masks (list): list of binary mask arrays
+        """
         binary_masks = []
         for mask_path in mask_paths:
             mask = Image.open(mask_path)
@@ -118,7 +133,7 @@ class CustomDataset(Dataset):
         mask[mask <= 0.5] = 0
         
         return (img, mask)
-    
+     
     def train_generator(data_frame, batch_size, train_path, aug_dict,
         save_img_dir, save_mask_dir,
         image_save_prefix, mask_save_prefix,
@@ -131,7 +146,8 @@ class CustomDataset(Dataset):
         '''
         Generate image and mask at the same time using the same seed for
         image_datagen and mask_datagen to ensure the transformation for image
-        and mask is the same 
+        and mask is the same.
+        Retrieved from https://github.com/dorltcheng/Transfer-Learning-U-Net-Deep-Learning-for-Lung-Ultrasound-Segmentation/blob/main/DataPreprocessing.py
         ''' 
         # Apply same augmentations to both image and mask
         image_datagen = ImageDataGenerator(**aug_dict)

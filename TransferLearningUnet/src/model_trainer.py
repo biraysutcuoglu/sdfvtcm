@@ -20,11 +20,37 @@ from src.model_unet import ModelUnet
 from src.custom_dataset import CustomDataset
 
 class ModelTrainer:
+    """
+    Class for training and evaluating a UNet model for image segmentation.
+    """
     def train_model(df, train_df, test_df, unet_model, 
                     batch_size, epochs, 
                     train_generator_args,aug_img_dir, aug_mask_dir, aug_img_prefix, aug_mask_prefix, aug_format, 
                     height, width,
                     model_dir):
+        """
+        Train the UNet model using the provided training data.
+        Retrieved from: https://github.com/dorltcheng/Transfer-Learning-U-Net-Deep-Learning-for-Lung-Ultrasound-Segmentation/blob/main/V_Unet/V_Unet_v1_2.ipynb 
+        Args:
+            df (pd.DataFrame): DataFrame containing the training data.
+            train_df (pd.DataFrame): DataFrame containing the training data.
+            test_df (pd.DataFrame): DataFrame containing the testing data.
+            unet_model (tf.keras.Model): UNet model to be trained.
+            batch_size (int): Batch size for training.
+            epochs (int): Number of epochs to train the model.
+            train_generator_args (dict): Arguments for the training generator.
+            aug_img_dir (str): Directory for augmented images.
+            aug_mask_dir (str): Directory for augmented masks.
+            aug_img_prefix (str): Prefix for augmented images.
+            aug_mask_prefix (str): Prefix for augmented masks.
+            aug_format (str): Format for saving augmented images and masks.
+            height (int): Height of input images.
+            width (int): Width of input images.
+            model_dir (str): Directory to save the trained model.
+        Returns:
+            history (tf.keras.callbacks.History): Training history.
+            checkpoint_path (str): Path to the saved model checkpoint.
+        """
         train_gen = CustomDataset.train_generator(train_df, batch_size, 
                           None, 
                           train_generator_args,
@@ -61,6 +87,20 @@ class ModelTrainer:
         return history, checkpoint_path
     
     def evaluate_model(checkpoint_path, test_df, batch_size, height, width, history=None):
+        """
+        Evaluate the UNet model using the given testing data.
+        Args:
+            checkpoint_path (str): Path to the saved model checkpoint.
+            test_df (pd.DataFrame): DataFrame containing the testing data.
+            batch_size (int): Batch size for evaluation.
+            height (int): Height of input images.
+            width (int): Width of input images.
+            history (tf.keras.callbacks.History, optional): Training history. Defaults to None.
+        Returns:
+            TLmodel (tf.keras.Model): Loaded UNet model.
+            metrics (dict): Evaluation metrics.
+            histories (list): List of training histories.
+        """
         # Evaluate the generator 
         histories = []
         losses = []
@@ -111,6 +151,14 @@ class ModelTrainer:
         print('IOU: ', ious)
 
     def generate_callbackslist(model_dir):
+        """
+        Generate a list of callbacks for training the model.
+        Args:
+            model_dir (str): Directory to save the model checkpoints.
+        Returns:
+            callbacks_list (list): List of callbacks.
+            checkpoint_path (str): Path to the saved model checkpoint.
+        """
         if not os.path.exists(model_dir):
             os.makedirs(model_dir)
 
