@@ -1,4 +1,4 @@
-# Stable Diffusion Data Augmentation for Visual Tool Condition Monitoring
+# Stable Diffusion based Data Augmentation for Visual Tool Condition Monitoring
 ![alt text](system_arch.png)
 ## Steps for Running the Detection and Segmentation Pipeline
 1. Create a virtual environment (venv) with python>=3.9,<3.12  (TensorFlow 2.16.1 supports Python 3.8–3.11) \
