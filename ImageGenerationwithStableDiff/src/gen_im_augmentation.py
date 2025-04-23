@@ -6,6 +6,11 @@ import cv2
 from PIL import Image, ImageEnhance
 import random
 
+'''
+This class measures brightness and contrast of synthetic and real images
+adjusts the synthetic images according to real images
+'''
+
 class GeneratedImageAugmentation:
     def measure_brightness(image_path):
         image = Image.open(image_path)

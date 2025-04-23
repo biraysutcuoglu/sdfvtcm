@@ -27,7 +27,7 @@ class ExperimentUtils:
     @staticmethod
     def copy_selected_images(random_files, images_dir, output_dir):
         '''
-        Copies the given files with the given filenames to target directory
+        Copies given files with the given filenames to target directory
         '''
         os.makedirs(output_dir, exist_ok=True)
 
