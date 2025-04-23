@@ -5,6 +5,13 @@ from common.common_methods import CommonMethods
 
 class COCOtoBinaryConverter:
     def create_masks(coco_data_path, wear_class_id, out_dir):
+        '''
+        Convert COCO annotations to binary masks for a specific wear class.
+        Args:
+            coco_data_path (str): Path to the COCO JSON file.
+            wear_class_id (int): The category ID for the wear class.
+            out_dir (str): Directory to save the binary masks.
+        '''
         if not os.path.exists(coco_data_path):
             raise FileNotFoundError(f"Error: The file '{coco_data_path}' does not exist.")
         

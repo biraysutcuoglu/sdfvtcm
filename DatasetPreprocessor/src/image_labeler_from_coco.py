@@ -15,7 +15,7 @@ sys.path.append(project_root)
 from common.common_methods import CommonMethods
 
 class ImageLabeler:
-    # This class gets a coco annotation file of a dataset and generates image labels for the dataset
+    '''This class gets a coco annotation file of a dataset and generates image labels for the dataset'''
     
     def __init__(self, config_file):
         config = CommonMethods.read_yaml(config_file)
@@ -38,8 +38,12 @@ class ImageLabeler:
         self.calculate_wear_score()
 
     def generate_image_prompts(self):
-        # annotation format for huggingface dataset
-        # e.g. {"file_name": "4_1_1.png", "text": "turning tool with moderate flank wear"}
+        '''
+        Generate image prompts for each image in the dataset. In the form of:
+        {"file_name": "4_1_1.png", "text": "{tool_type} with {wear_category} wear"}
+        The prompts are generated based on the wear type of the tool.
+        The prompts are saved in a JSONL file in the same directory as the COCO annotations.
+        '''
         ann_dir = os.path.dirname(self.coco_annotations_path)
         output_file = os.path.join(ann_dir, "metadata.jsonl")
         num_ann_images = 0
@@ -50,9 +54,11 @@ class ImageLabeler:
                 wear_types = ["flank" if wear == "flank_wear" else wear for wear in v['wear_type']]
                 random.shuffle(wear_types)
                 type_wear = ", ".join(wear_types)
+                
+                # NOTE: Wear score was not identifiable by the Stable Diff. model
                 # wear_score = f"{v['wear_score']:.2f}"
                 # prompt = f"{self.tool_class} with {type_wear} wear with a wear score of {wear_score}"
-                # NOTE: For now just focus on wear type without wear score
+
                 prompt = f"{self.tool_class} with {type_wear} wear"
 
                 data = {"file_name": file_name, "text": prompt}
@@ -62,7 +68,11 @@ class ImageLabeler:
         print(f"Labels of {num_ann_images} images, written to {output_file}")
 
     def get_wear_state(self, coco_annotations_field):
-        #Get the bounding boxes of wear categories and get the biggest height (x, y, w, h) and calculate the wear state
+        '''
+        Get the wear state of the tool from the COCO annotations.
+        The wear state is the biggest height of the bounding box of the wear category.
+        The wear state is saved in the image_dict.
+        '''
         for annotation in coco_annotations_field:
             image_id = annotation['image_id']
             
@@ -75,6 +85,11 @@ class ImageLabeler:
                         self.image_dict[image_id]['wear_state'] = wear
 
     def get_tool_size(self, coco_annotations_field):
+        '''
+        Get the tool size from the COCO annotations.
+        The tool size is the height of the bounding box of the tool category.
+        The tool size is saved in the image_dict.
+        '''
         # Get h from bbox of tool category for each id 
         for annotation in coco_annotations_field:
             image_id = annotation['image_id']
@@ -85,6 +100,11 @@ class ImageLabeler:
                     self.image_dict[image_id]["tool_size"] = annotation["bbox"][3]
 
     def get_wear_type(self, coco_annotations_field):
+        '''
+        Get the wear type from the COCO annotations.
+        The wear type is the category of the annotation.
+        The wear type is saved in the image_dict.
+        '''
         for annotation in coco_annotations_field:
             image_id = annotation['image_id']
             
@@ -105,8 +125,10 @@ class ImageLabeler:
         return image_dict
 
     def calculate_wear_score(self):
-        # normalize (wear size / tool size)
-        # with log normalization
+        '''
+        Calculate the wear score for each image in the image_dict.
+        The wear score is calculated as the normalized ratio of the wear state to the tool size.
+        '''
         for v in self.image_dict.values():
             v['wear_score'] = np.log1p(v['wear_state'] / v['tool_size'])
 

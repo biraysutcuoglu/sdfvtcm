@@ -6,22 +6,36 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-"""This class is for resizing images for the Stable Diff Model because the model works with 1024x1024 images
-Also enhances the images by increasing the contrast"""
+"""
+This class is for resizing images for the Stable Diff Model because the model works with 1024x1024 images
+"""
 
 class ImageUtils:
     @staticmethod
     def resize_with_Lanczos(input_image_path, target_image_width, target_image_height):
+        # Resize the image using Lanczos filter
         img = Image.open(input_image_path)
         return img.resize((target_image_width, target_image_height), Image.LANCZOS)
     
     @staticmethod
     def resize_with_Bicubic(input_image_path, target_image_width, target_image_height):
+        # Resize the image using Bicubic filter
         img = Image.open(input_image_path)
         return img.resize((target_image_width, target_image_height), Image.BICUBIC)
 
     @staticmethod
     def resize_all_images(input_dir, output_dir, resizing_alg, target_image_width, target_image_height, ratio=None, padding=None):
+        """
+        Resize all images in the input directory and save them to the output directory.
+        Args:
+            input_dir (str): Directory containing the images to be resized.
+            output_dir (str): Directory to save the resized images.
+            resizing_alg (str): Resizing algorithm to use. Options: "lanczos", "bicubic", "letterbox", "undo_letterbox".
+            target_image_width (int): Target width for resizing.
+            target_image_height (int): Target height for resizing.
+            ratio (tuple): Ratio for undo_letterbox resizing.
+            padding (tuple): Padding for undo_letterbox resizing.
+        """
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         
@@ -56,7 +70,7 @@ class ImageUtils:
     
     @staticmethod
     def letterbox(image_path, new_shape=(1024, 1024), color=(0, 0, 0), auto=False, scaleFill=False, scaleup=True, stride=32):
-        # Implementation from official YOLO5 repository
+        # Implementation from official YOLO5 repository https://github.com/ultralytics/yolov5. 
         # Resizes the image to the target size with letterbox padding (keeping the aspect ratio)
         
         # Resize and pad image while meeting stride-multiple constraints
@@ -116,6 +130,13 @@ class ImageUtils:
 
     @staticmethod
     def copy_metadata_file_to_resized_images_dir(metadata_dir, resized_images_dir, metadata_filename="metadata.jsonl"):
+        """
+        Copy the metadata file from the metadata directory to the resized images directory.
+        Args:
+            metadata_dir (str): Directory containing the metadata file.
+            resized_images_dir (str): Directory to save the resized images.
+            metadata_filename (str): Name of the metadata file to copy.
+        """
         # Search for the metadata file in the given directory
         metadata_file_path = None
         for root, _, files in os.walk(metadata_dir):

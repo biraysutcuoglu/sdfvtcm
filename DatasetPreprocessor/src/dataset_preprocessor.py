@@ -9,6 +9,15 @@ class DatasetPreprocessor:
     
     @staticmethod
     def move_images_with_masks(image_folder, mask_folder, output_folder_images, output_folder_masks, mask_suffix="_5"):
+        '''
+        Move images and their corresponding masks to separate folders.
+        Args:
+            image_folder (str): Path to the folder containing images.
+            mask_folder (str): Path to the folder containing masks.
+            output_folder_images (str): Path to the output folder for images.
+            output_folder_masks (str): Path to the output folder for masks.
+            mask_suffix (str): Suffix to identify the mask files. For Tool dataset it is "_mask", FBA dataset, it is "_5".
+        '''
         num_images_with_masks = 0
         num_images_without_masks = 0
 
@@ -44,9 +53,16 @@ class DatasetPreprocessor:
 
     @staticmethod
     def split_dataset(image_folder, mask_folder, output_folder, train_ratio=0.8, val_ratio=0.1, test_ratio=0.1):
-        #Split dataset into train, val and test
-        #Move images and masks to respective folders
-        
+        '''
+        Split the dataset into training, validation, and test sets.
+        Args:
+            image_folder (str): Path to the folder containing images.
+            mask_folder (str): Path to the folder containing masks.
+            output_folder (str): Path to the output folder for the split datasets.
+            train_ratio (float): Ratio of training data.
+            val_ratio (float): Ratio of validation data.
+            test_ratio (float): Ratio of test data.
+        '''
         assert train_ratio + val_ratio + test_ratio == 1, "Ratios must sum to 1"
 
         # Create output directories

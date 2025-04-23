@@ -11,6 +11,14 @@ It is implemented for labelling Tool Dataset images to be used for training the 
 class ImageLabeler:
     
     def measure_wear(mask_path):
+        '''
+        Measures the amount of wear in the image by counting the number of 
+        continuos white pixels along y axis. in the binary mask.
+        Args:
+            mask_path (str): Path to the binary mask image.
+        Returns:
+            int: The amount of wear in the image.
+        '''
         img = Image.open(mask_path).convert("L")  
         img_arr = np.array(img)
 
@@ -37,8 +45,14 @@ class ImageLabeler:
     #all images are approximately taken from same distance and same tool
     #so we can determine the amount of wear by taking only the number of wear pixels
     def assign_categories(wear_dict):
+        ''' 
+        Assigns categories based on wear values 
+        Args:
+            wear_dict (dict): Dictionary with image filenames as keys and wear values as values.
+        Returns:
+            dict: Dictionary with image filenames as keys and wear categories as values.
+        '''
         wear_categories = {}
-        ''' Assigns categories based on wear values '''
         for filename, wear in wear_dict.items():
             if wear <= 100:
                 wear_categories[filename] = "Low Wear"

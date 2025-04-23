@@ -1,4 +1,3 @@
-'''This class creates a dataset object for creating COCO annotation file from color maps'''
 import sys
 import os 
 import numpy as np
@@ -14,6 +13,9 @@ sys.path.append(project_root)
 from common.common_methods import CommonMethods
 
 class Colormap_to_COCO_Annotation_Generator:
+    """"
+    This class generates COCO annotations from color maps.
+    """
     def __init__(self, config_path, labels_out_file_name, mask_indication="_5"):
         self.coco_out_filename = labels_out_file_name
         self.config = CommonMethods.read_yaml(config_path)
@@ -318,6 +320,13 @@ class Colormap_to_COCO_Annotation_Generator:
     
     @staticmethod
     def combine_two_coco_annotation_files(ann_file1, ann_file2, output_file="merged_annotations.json"):
+        """
+        Combine two COCO annotation files into one.
+        Args:
+            ann_file1 (str): Path to the first COCO annotation file.
+            ann_file2 (str): Path to the second COCO annotation file.
+            output_file (str): Path to save the merged COCO annotation file.
+        """
         # Read both annotation files
         f1_annotations = CommonMethods.read_json(ann_file1)
         f2_annotations = CommonMethods.read_json(ann_file2)
