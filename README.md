@@ -10,7 +10,7 @@
 3. Upgrade pip and install requirements \
 `` pip install --upgrade pip `` \
 `` pip install -r requirements.txt ``\
-`` python -m ipykernel install --user --name={name_of_the_venv} --display-name "Python venv" ``\
+`` python -m ipykernel install --user --name={name_of_the_venv} --display-name "Python venv" ``
 
 4. Install detectron2 (this may take a while)
 - ``python -m pip install 'git+https://github.com/facebookresearch/detectron2.git' ``
@@ -46,10 +46,10 @@
     ├── DatasetPreprocessor  
     ├── Experiments
 
-- Add fba_models to .gitignore
-- Pick a model and adjust the segmenter_config.yaml:
+- If you change the name of the fba_models folder, add it to .gitignore file.
+- Pick a model and adjust the **segmenter_config.yaml**:
     - Let's say that you selected fba_models/real/real only_{experiment_details} model. According to this selection:
-        - The experiment_details part is automatically created based on the hyperparameters in the config. 
+        - The experiment_details is automatically created based on the hyperparameters in the config. 
         - model/output_dir should be adjusted to "./fba_models/real/"
         - wandb/experiment_name should be adjusted to "real only" 
     - Then run `` python tool_segmentation.py --mode infer-on-val`` or `` python tool_segmentation.py --mode infer-on-test`` to see the evaluation results.     
@@ -58,9 +58,9 @@
 ----------------------
 ### Segmentation with UNet
 For training the UNet, Jupyter Notebook **model_training.ipynb** and for model evaluation **model_evaluation.ipynb** is implemented.
-- By running these notebooks, training or inference can be done on the Tool Dataset.
+- By running these notebooks, training or inference can be done on the Tool dataset.
 - If you'd like to use already trained models for inference:
-    - Copy the V_Unet folder inside of TransferLearningUnet. (if you change the name of the folder, please add it to the .gitignore file)
+    - Copy the V_Unet folder inside of TransferLearningUnet. (if you change the name of the folder, add it to the .gitignore file)
     - Run model_evaluation.ipynb notebook.
 
 -----------------------
@@ -103,7 +103,7 @@ For training the UNet, Jupyter Notebook **model_training.ipynb** and for model e
 After generating images **if you'd like to create augmented datasets from scratch follow these steps**:
 - Open Experiments folder (in the root directory of the project)
     - Real datasets can be combined with synthetic images as described in **adding_generated_bue_images.ipynb**. This notebook describes how to create a combined dataset. 
-    - After combining the real and the synthetic images, new augmented training dataset can be created. 
+    - After combining the real and the synthetic images, new augmented training dataset is created. 
     - MaskRCNN model can be trained on the combined dataset by adjusting the training dataset path field of the MaskRCNN/segmenter_config.yaml. 
     - UNet model can be trained on the combined dataset by changing the training dataset path in the **model_training.ipynb**.
 
