@@ -73,7 +73,7 @@ class WandbTrainer(DefaultTrainer):
         # Add ReduceLROnPlateau scheduler according to validation AP
         self.lr_scheduler = ReduceLROnPlateau(
             self.optimizer, mode='max', factor=0.75, patience=3, verbose=True
-        ) # factor for FBA dataset was 0.75
+        ) 
 
         # # Cosine Annealing Scheduler
         # self.lr_scheduler = CosineAnnealingLR(self.optimizer, T_max=10, eta_min=self.init_lr * 0.1)
@@ -103,7 +103,7 @@ class WandbTrainer(DefaultTrainer):
         Builds the train loader.
         """
         return build_detection_train_loader(cfg)
-        # If data augmentation is needed, return this
+        # NOTE: If data augmentation is needed, return this
         # return build_detection_train_loader(cfg,
         #                                     mapper=DatasetMapper(cfg, is_train=True, augmentations=build_augmentation()))
         

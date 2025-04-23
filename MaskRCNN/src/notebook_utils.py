@@ -36,6 +36,11 @@ class NotebookUtils:
         return im
     
     def predict_classes_without_finetuning(example_image):
+        """
+        Predict classes without finetuning the model
+        Args:
+            example_image (str): path to the image
+        """
         cfg = get_cfg()
 
         # add project-specific config (e.g., TensorMask) here if you're not running a model in detectron2's core library

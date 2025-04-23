@@ -25,6 +25,10 @@ from PIL import Image
 
 from src.wandbtrainer import WandbTrainer
 
+"""
+Finetuner class for finetuning MaskRCNN model
+"""
+
 class Finetuner:
     def __init__(self, train_dataset_name, train_dataset_path, train_labels, val_dataset_path, val_labels, test_dataset_path, test_labels, wandb_project_name):
         """
@@ -52,6 +56,15 @@ class Finetuner:
     def get_trainer(self, experiment_name, model_output_dir, num_workers, batch_size, lr, max_iter, batch_size_per_image, num_classes=4):
         """
         Prepares trainer with hyperparams, here either the default or wandb trainer can be used
+        Args:
+            experiment_name (str): name of the experiment
+            model_output_dir (str): directory to save the model
+            num_workers (int): number of workers for data loading
+            batch_size (int): batch size for training
+            lr (float): learning rate
+            max_iter (int): maximum number of iterations for training
+            batch_size_per_image (int): batch size per image for ROI heads
+            num_classes (int): number of classes in the dataset (default is 4)
         """
         self.cfg = get_cfg()
         self.cfg.OUTPUT_DIR = model_output_dir
@@ -67,11 +80,7 @@ class Finetuner:
         self.cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = batch_size_per_image   # The "RoIHead batch size" : number of region proposals sampled per image
         self.cfg.MODEL.ROI_HEADS.NUM_CLASSES = num_classes  # 2 classes for Tool dataset: tool and wear, 4 classes for FBA dataset: tool, flank_wear, bue, groove
         # NOTE: this config means the number of classes, but a few popular unofficial tutorials incorrect uses num_classes+1 here because of the background.
-        
-        # # for detecting small objects 
-        # self.cfg.MODEL.ANCHOR_GENERATOR.SIZES = [[4], [8], [16], [32], [64]]
-        # self.cfg.MODEL.ANCHOR_GENERATOR.ASPECT_RATIOS = [[0.25, 0.5, 1.0, 2.0, 4.0]]
-
+    
         os.makedirs(self.cfg.OUTPUT_DIR, exist_ok=True)
         
         # Use default trainer 
@@ -91,11 +100,11 @@ class Finetuner:
         with open(model_config_path, 'w') as file:
             yaml.dump(self.cfg, file)
         
-        # NOTE: Detectron automatically saves the model weights
+        # NOTE: Detectron2 automatically saves the model weights
     
     def load_model(self, model_path, num_classes, predictor_threshold, device="cuda"):
         """
-        Loads model, can be used in inference
+        Loads model
         """
         # Load config of the og model
         cfg = get_cfg()
