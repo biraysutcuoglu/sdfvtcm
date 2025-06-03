@@ -1,44 +1,44 @@
 # Python-specific ignores
 __pycache__/               
-*.pyc                      # Ignore compiled Python files
-*.pyo                      # Ignore optimized Python files
-*.pyd                      # Ignore Python DLL files
-*.pth                      # Ignore PyTorch model files 
+*.pyc                      
+*.pyo                      
+*.pyd                      
+*.pth                      
 
 # Environment and dependency files
-env/                       # Virtual environment
-venv/                      # Virtual environment
+env/                       
+venv/                      
 thesisProjectTestEnv/
-*.env                      # Environment variable files
-*.venv                     # Virtual environment settings
+*.env                      
+*.venv                     
 
 # Notebook-related ignores
-.ipynb_checkpoints/        # Jupyter Notebook checkpoints
+.ipynb_checkpoints/        
 
 # Log files
-*.log                      # Log files
-logs/                      # Log directory
+*.log                      
+logs/                      
 
 # Dataset files
-data/                      # Ignore all datasets (project-wide)
-*.csv                      # CSV files
-*.h5                       # HDF5 files
-*.tfrecord                 # TensorFlow records
+data/                      
+*.csv                      
+*.h5                       
+*.tfrecord                 
 
 # Model files and checkpoints
-*.pth                      # PyTorch model files
-*.pt                       # PyTorch saved tensors
-*.ckpt                     # Checkpoint files
-models/                    # Models directory (project-wide)
+*.pth                      
+*.pt                      
+*.ckpt                     
+models/                    
 
 # Output files
-outputs/                   # Ignore general output directories
-*.out                      # Output files
-*.bak                      # Backup files
+outputs/                   
+*.out                      
+*.bak                      
 
 # OS-specific ignores
-.DS_Store                  # macOS
-Thumbs.db                  # Windows
+.DS_Store                  
+Thumbs.db                  
 
 # Dataset ignores
 Data/
@@ -57,12 +57,12 @@ ImageGenerationwithStableDiff/output
 
 
 # IDE and editor-specific ignores
-.vscode/                   # Visual Studio Code settings
-*.sublime-workspace        # Sublime Text workspace files
-*.sublime-project          # Sublime Text project files
-*.swp                      # Swap files (e.g., vim)
+.vscode/                   
+*.sublime-workspace        
+*.sublime-project          
+*.swp                      
 
 # Temporary files and folders
-*.tmp                      # Temporary files
-temp/                      # Temporary directories
-tmp/                       # Temporary directories
+*.tmp                      
+temp/                      
+tmp/                       
